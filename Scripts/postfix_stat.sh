@@ -15,7 +15,7 @@
 #  --no_no_msg_size	отключение отчета по сообщениям без размера данных;
 #  --no_smtpd_warnings	отключение отчета по SMTPD-предупреждениям;
 #  --smtpd_stats	статистика SMTPD-соединений
-RespStr=$(sudo /etc/zabbix/logtail.pl -l /var/log/maillog -o /tmp/postfix_stat.dat | /usr/sbin/pflogsumm -h 0 -u 0 --mailq --no_bounce_detail --no_deferral_detail --no_no_msg_size --no_reject_detail --no_smtpd_warnings --smtpd_stats 2>/dev/null)
+RespStr=$(sudo /etc/zabbix/logtail.pl -l /var/log/mail.log -o /tmp/postfix_stat.dat | /usr/sbin/pflogsumm -h 0 -u 0 --mailq --no_bounce_detail --no_deferral_detail --no_no_msg_size --no_reject_detail --no_smtpd_warnings --smtpd_stats 2>/dev/null)
 # Статистика недоступна - возврат статуса сервиса - 'не работает'
 [ $? != 0 ] && echo 0 && exit
 
